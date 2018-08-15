@@ -16,34 +16,32 @@
 	$(document).ready(
 		function() {
 			var canvas = document.getElementById("webglcanvas");
-
+			// Init viewport and webgl
 			var gl = initWebGL(canvas);
 			initGL(gl, canvas);
 			initViewport(gl, canvas);
 			initShader(gl);
-
+			// Get objects using each function
 			var square = createSquare(gl);
 			var triangle = createTriangle(gl);
-			var sphere = createSphere(gl, 0.5);
+			var sphere = createSphere(gl, 0.5, 100);
 			var rhombus = createRhombus(gl);
-
-			// TO DO: Transform the different figure's positions, and draw them.
+			//Transform the different figure's positions, and draw them.
 			mat4.identity(modelViewMatrix);
 			mat4.translate(modelViewMatrix, modelViewMatrix, [-1.1, 0.7, -3.333]);
 			draw(gl, square);
-
+			// Draw triangle
 			mat4.identity(modelViewMatrix);
 			mat4.translate(modelViewMatrix, modelViewMatrix, [1, 0.7, -3.333]);
 			draw(gl, triangle);
-
+			// Draw sphere
 			mat4.identity(modelViewMatrix);
 			mat4.translate(modelViewMatrix, modelViewMatrix, [1, -0.7, -3.333]);
 			draw(gl, sphere);
-
+			// Draw rhombus
 			mat4.identity(modelViewMatrix);
 			mat4.translate(modelViewMatrix, modelViewMatrix, [-1.1, -0.7, -3.333]);
 			draw(gl, rhombus);
-
 		}
 	);
 </script>

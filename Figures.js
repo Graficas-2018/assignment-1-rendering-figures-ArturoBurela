@@ -239,20 +239,20 @@ function createRhombus(gl)
   return square;
 }
 
-function createSphere(gl, radius)
+function createSphere(gl, radius, triangles)
 {
   var vertexBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
   var verts = [];
   // Push inital vertex in the center
   verts.push(0,0,0);
-  for (i = 20; i <= 170; i++){
+  for (i = triangles/10; i <= triangles*0.85; i++){
     verts.push(
-      radius*Math.cos(i*2*Math.PI/200),
-      radius*Math.sin(i*2*Math.PI/200),
+      radius*Math.cos(i*2*Math.PI/triangles),
+      radius*Math.sin(i*2*Math.PI/triangles),
       0
     );
-    //console.log(radius*Math.cos(i*2*Math.PI/200)+" "+radius*Math.sin(i*2*Math.PI/200)+" "+0);
+    //console.log(radius*Math.cos(i*2*Math.PI/triangles)+" "+radius*Math.sin(i*2*Math.PI/triangles)+" "+0);
   }
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verts), gl.STATIC_DRAW);
   var sphere = {buffer:vertexBuffer, vertSize:3, nVerts:verts.length/3, primtype:gl.TRIANGLE_FAN};
